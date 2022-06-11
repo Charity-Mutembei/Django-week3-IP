@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<style>
+     body{
+        background: linear-gradient(120deg, blueviolet,black);
+        margin: 0;
+        overflow: hidden;
+        height: 100vh;
+    }
+
+</style>
+<div class="log"  style="width: 15cm; margin-top: 10%; margin-left: 30%;">
+    <div class="shadow p-3 mb-5 bg-body rounded"  style=" color: black;">
+        <h1  style="margin-left: 35%; font-weight: 900;" >Login</h1>
+        <hr>
+            <form action="" method="POST" style="width: 5cm; margin-left: 20%; color: blueviolet;">
+                {%csrf_token%}
+                <div class="inputBx">
+                    <label for="">Username:</label>
+                    <input type="text" name="username" placeholder="Enter Username" />
+                </div>
+            
+                <div class="inputBx">
+                    <label for="">Password:</label>
+                    <input type="password" name="password" placeholder="Enter Password">
+                </div>
+            
+                <br>
+                <p>You do not have an account?<br> <a href="{% url 'register' %}">Please Click here</a> to Sign Up</p>
+                <hr>
+                <input type="submit" class="btn btn-outline-secondary" style=" margin-left: 60%;" value="Login"/>
+            </form>
+    </div> 
+</div>
+{% endblock %}
