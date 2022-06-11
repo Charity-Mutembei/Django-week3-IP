@@ -48,11 +48,8 @@ def loginPage(request):
 
     return render(request, 'login.html', context)
 
-
-
-        
-
-
 @login_required(login_url='/login/')
 def landing(request):
-    return render(request, 'landing.html')
+    return render(request, 'landing.html') 
+
+
