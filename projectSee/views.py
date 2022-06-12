@@ -11,6 +11,10 @@ from .models import NewsLetterRecipients
 from .email import send_welcome_email
 from django.core.mail import send_mail
 from django.conf import settings
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .models import Projects, Profile
+from .serializer import ProfileSerializer, ProjectsSerializer
 
 
 # Create your views here.
@@ -74,3 +78,17 @@ def newsletter(request):
     send_welcome_email(name,email)
     data = {'success': 'You have been successfully added to the mailing list'}
     return JsonResponse
+
+
+class ProfileList(APIView):
+    def get(self, request, format=None):
+        all_profiles = Profile.objects.all()
+        serializers = ProfileSerializer(all_profiles, many=True)
+        return Response(serializers.data)
+
+
+class ProjectsList(APIView):
+    def get(self, request, format=None):
+        all_projects = Projects.objects.all()
+        serializers = ProjectsSerializer(all_projects, many=True)
+        return Response(serializers.data)
