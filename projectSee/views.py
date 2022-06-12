@@ -16,6 +16,7 @@ from rest_framework.views import APIView,status
 from .models import Projects, Profile
 from .serializer import ProfileSerializer, ProjectsSerializer
 from projectSee import serializer
+from .permissions import IsAdminOrReadOnly
 
 
 # Create your views here.
@@ -85,6 +86,7 @@ class ProfileList(APIView):
     def get(self, request, format=None):
         all_profiles = Profile.objects.all()
         serializers = ProfileSerializer(all_profiles, many=True)
+        permission_classes = (IsAdminOrReadOnly,)
         return Response(serializers.data)
 
     def post(self, request, format=None):
@@ -99,6 +101,7 @@ class ProjectsList(APIView):
     def get(self, request, format=None):
         all_projects = Projects.objects.all()
         serializers = ProjectsSerializer(all_projects, many=True)
+        permission_classes = (IsAdminOrReadOnly,)
         return Response(serializers.data)
 
     def post(self, request, format=None):
