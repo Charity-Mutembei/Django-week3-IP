@@ -8,5 +8,6 @@ urlpatterns = [
     path('login/',views.loginPage,name='login'),
     path('register',views.registerPage,name='register'),
     path('welcome', views.welcome, name='welcome'),
+    path('ajax/newsletter/', views.newsletter, name='newsletter'),
 
 ]

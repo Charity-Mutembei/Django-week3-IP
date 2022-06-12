@@ -1,10 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from .forms import registrationForm
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.http import JsonResponse
+from .forms import NewsLetterForm
+from .models import NewsLetterRecipients
+from .email import send_welcome_email
 
 
 # Create your views here.
@@ -53,4 +57,16 @@ def landing(request):
     return render(request, 'landing.html') 
 
 def welcome(request):
-    return render (request, 'welcome.html')
+    form = NewsLetterForm()
+   
+    return render (request, 'welcome.html', {'form': form})
+
+def newsletter(request):
+    name = request.POST.get('your name')
+    email = request.POST.get('email')
+
+    recipient = NewsLetterRecipients(name=name, email=email)
+    recipient.save()
+    send_welcome_email(name,email)
+    data = {'success': 'You have been successfully added to the mailing list'}
+    return JsonResponse
