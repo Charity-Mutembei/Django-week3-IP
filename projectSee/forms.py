@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.forms import ModelForm
 from django import forms
+from .models import Profile, Projects
 
 
 
@@ -15,3 +16,9 @@ class NewsLetterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email']
+
+
+class PostMakeForm(UserCreationForm):
+    class Meta:
+        model = Projects
+        fields = ['title', 'image', 'description', 'link']

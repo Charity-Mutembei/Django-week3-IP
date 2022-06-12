@@ -1,0 +1,46 @@
+{%extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+
+<body>
+
+    <form  action="{%url 'new-post'%}" method="post" enctype="multipart/form-data">
+      {%csrf_token%}
+      <div class="form-design" style="margin-left: 30%; height: 3cm; width: 6cm; padding: 2px;">
+        <div class="title" style="padding: 2px;">
+          <h1>New Post</h1>
+        </div>
+        <div class="post-body" style="padding: 2px;">
+          <label for="">Chose image in your computer</label>
+          {{form.image}}
+        </div>
+        <div class="post-body-2" style="padding: 2px;">
+            <label for="">Your Project's title</label>
+            {{form.title}}
+          </div>
+        <div class="post-body-2" style="padding: 2px;">
+          <label for="">Your project's description</label>
+          {{form.description}}
+        </div>
+        <div class="post-body-3" style="padding: 2px;">
+          <label for="">Add the link to the Project</label>
+          {{form.link}}
+        </div>
+          <input type="submit" class="btn btn-success btn-lg" value="Post" style="padding: 4px; width: 3cm; margin: 4px;">
+      </div>
+  
+  
+  
+  
+  
+    </form>
+  
+     {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% bootstrap_javascript %} {% endblock %}
+  
+  </body>
+
+
+{% endblock %}

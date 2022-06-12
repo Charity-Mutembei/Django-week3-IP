@@ -6,7 +6,7 @@ from .forms import registrationForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http import JsonResponse
-from .forms import NewsLetterForm
+from .forms import NewsLetterForm, PostMakeForm
 from .models import NewsLetterRecipients
 from .email import send_welcome_email
 from django.core.mail import send_mail
@@ -65,12 +65,7 @@ def landing(request):
     return render(request, 'landing.html') 
 
 def welcome(request):
-    projects = Projects.objects.all()
-
-    
-
-
-            
+    projects = Projects.objects.all()            
    
     return render (request, 'welcome.html', {'projects': projects})
 
@@ -114,4 +109,19 @@ class ProjectsList(APIView):
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@login_required(login_url='/login/')
+def new_post(request):
+    current_user = request.user
+    if request.method == 'POST':
+        form = PostMakeForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.editor = current_user
+            post.save()
+        return redirect ('welcome')
+
+    else: 
+        form = PostMakeForm()
+    return render(request, 'new_post.html', {'form': form})
 
