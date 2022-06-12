@@ -1,55 +1,92 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
-
-
-
-
-<!-- Looping through news end   -->
 <style>
     body{
-        background: linear-gradient(120deg, blueviolet,black);
-        margin: 0;
-        overflow: hidden;
-        height: 100vh;
+        background-color: black;
+        overflow-x: hidden;
+    }
+    .profile-picture{
+        border-radius: 3cm;
+        width: 1.5cm;
+        height: 1.5cm;
+    }
+    .head-section{
+        padding-left: 1cm;
+        padding-right: 1cm;
+        margin-top: 0.5cm;
+        
+    }
+    #search{
+        margin-left: 6cm;
+        width: 13cm;
+        
+    }
+    .second-section{
+        background-color: #B61AA6;
+        height: 1.5cm;
+        
     }
 </style>
-
 <body>
-    <div class="log"  style="width: 15cm; margin-top: 10%; margin-left: 30%;">
-        <div class="shadow p-3 mb-5 bg-body rounded" id="cardy" style=" color: black;">
-            <h1 style="margin-left: 35%; font-weight: 900;">NewsLetter</h1>
-            <hr>
-                <form action="{% url 'welcome' %}" method="POST"  style="width: 5cm; margin-left: 20%; color: blueviolet;">
-                    {%csrf_token%}
-                    <div class="inputBx">
-                        <Label>Username:</Label>
-                        {{form.username}}
-                    </div>
-                    
-                    <div class="inputBx">
-                        <Label>Email Address:</Label>
-                        {{form.email}}
-                    </div>
-                    <br>
-                    <!-- <p>If you have an account <a href="{% url 'login' %}">Please Click here</a> to log in</p> -->
-                    
-                    <!-- <input type="submit" class="btn btn-outline-secondary" style=" margin-left: 60%;" value="Submit"/> -->
-                    <input type="submit" class="btn btn-outline-secondary" style=" margin-left: 60%;" value="Subscribe">
-                </form>
-        </div> 
+
+    <!-- head-section  -->
+
+    <div class="head-section">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#" style="color: yellow; font-size: 1cm; font-weight: 700;">PROJECT-SEE</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <form class="d-flex" id="search" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" style="border-radius: 2cm; background-color: #B61AA6; color: white; " aria-label="Search">
+              </form>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#" style="color: yellow; font-size: 0.5cm; font-weight: 700; margin-left: 5cm;" class="username">Username</a>
+                    </li>
+                </ul>            
+            </div>
+            <div class="profile-picture-1">
+                <a href="#"><img src="/static/a0607c1655b30da438f5c6.jpg" class='profile-picture' alt="" style="margin-right: 2.5cm;"></a>
+            </div>
+            </div>
+          </nav>
+    </div>
+
+    <!-- second-section  -->
+
+    <div class="second-section">
+        <nav class="navbar">
+            <div class="container">
+              <a class="navbar-brand" href="#">
+                <p style="color: white; font-weight: 700;">Make someone’s day better! Appreciate their work</p>
+                <a href="#"><i class="fa-brands fa-twitter" style="margin-left: 9cm; color: yellow;"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram-square" style="color: yellow; margin-right: -2cm;"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook" style="color: yellow;"></i></a>
+              </a>
+            </div>
+
+          </nav>
     </div>
 
 
-    <!-- this is the  ajax block scripts  -->
+    <!-- third-section  -->
+    <div class="third-section">
+        <div class="container">
+            <div class="project-display">
+                
+            </div>
+        </div>
+    </div>
 
-{% block scripts %} {{block.super}}
-<script type="text/javascript" src="{%static 'js/newsletter.js'%}"></script>
 
-<!-- end of the script  -->
-
-
-{% endblock%}
+    
 </body>
+
+
+
+
 {% endblock %}

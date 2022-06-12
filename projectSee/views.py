@@ -9,6 +9,8 @@ from django.http import JsonResponse
 from .forms import NewsLetterForm
 from .models import NewsLetterRecipients
 from .email import send_welcome_email
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 # Create your views here.
@@ -58,6 +60,8 @@ def landing(request):
 
 def welcome(request):
     form = NewsLetterForm()
+
+            
    
     return render (request, 'welcome.html', {'form': form})
 

@@ -1,0 +1,56 @@
+<!-- Looping through news end   -->
+<style>
+    body{
+        background: linear-gradient(120deg, blueviolet,black);
+        margin: 0;
+        overflow: hidden;
+        height: 100vh;
+    }
+</style>
+
+<body>
+    <div class="log"  style="width: 15cm; margin-top: 3%; margin-left: 30%;">
+        <div class="shadow p-3 mb-5 bg-body rounded" id="cardy" style=" color: black;">
+            <h1 style="margin-left: 35%; font-weight: 900;">NewsLetter</h1>
+            <hr>
+                <form action="{% url 'welcome' %}" method="POST"  style="width: 5cm; margin-left: 20%; color: blueviolet;">
+                    {%csrf_token%}
+                    <div class="inputBx">
+                        <Label>Username:</Label>
+                        {{form.username}}
+                    </div>
+                    
+                    <div class="inputBx">
+                        <Label>Email Address:</Label>
+                        {{form.email}}
+                    </div>
+                    <br>
+                    <!-- <p>If you have an account <a href="{% url 'login' %}">Please Click here</a> to log in</p> -->
+                    
+                    <!-- <input type="submit" class="btn btn-outline-secondary" style=" margin-left: 60%;" value="Submit"/> -->
+                    <input type="submit" class="btn btn-outline-secondary" style=" margin-left: 60%;" value="Subscribe">
+                </form>
+        </div> 
+    </div>
+
+
+
+
+
+
+    <div class="second-portion">
+        
+    </div>
+
+
+    <!-- this is the  ajax block scripts  -->
+
+{% block scripts %} {{block.super}}
+<!-- <script type="text/javascript" src="{%static 'js/newsletter.js'%}"></script> -->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+
+<!-- end of the script  -->
+
+
+{% endblock%}
+</body>
