@@ -52,4 +52,5 @@ def loginPage(request):
 def landing(request):
     return render(request, 'landing.html') 
 
-
+def welcome(request):
+    return render (request, 'welcome.html')
