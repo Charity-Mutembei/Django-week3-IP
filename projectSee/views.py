@@ -65,11 +65,14 @@ def landing(request):
     return render(request, 'landing.html') 
 
 def welcome(request):
-    form = NewsLetterForm()
+    projects = Projects.objects.all()
+
+    
+
 
             
    
-    return render (request, 'welcome.html', {'form': form})
+    return render (request, 'welcome.html', {'projects': projects})
 
 def newsletter(request):
     name = request.POST.get('your name')
@@ -110,3 +113,5 @@ class ProjectsList(APIView):
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+

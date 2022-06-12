@@ -79,13 +79,16 @@
         <div class="container">
             <div class="project-display">
                 <div class="row">
+                    {% for project in projects%}
                     <div class="col">
                         <div class="card" style="width: 18rem; background-color: #CEB21C;">
-                            <img src="/static/a0607c1655b30da438f5c6.jpg" class="card-img-top" alt="...">
+                            <img src="{{project.image.url}}" class="card-img-top" style="height: 6cm;" alt="...">
+                            <hr>
                             <div class="card-body">
-                              <h5 class="card-title">Card title</h5>
-                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                              <a href="#" class="btn" style="background-color: black; color: white;">Go somewhere</a>
+                              <h5 class="card-title"><strong>Title: {{project.title}}</strong></h5>
+                              <hr>
+                              <p class="card-text"><strong>Project-description: <br> </strong>{{project.description}}</p>
+                              <a href="{{project.link}}" class="btn" style="background-color: black; color: white; border-radius: 1cm; margin-left: 1cm;">Go somewhere</a>
                               
                             </div>
                             <div class="vote">
@@ -93,6 +96,7 @@
                             </div>
                           </div>
                     </div>
+                    {% endfor %}
                 </div>
 
             </div>
