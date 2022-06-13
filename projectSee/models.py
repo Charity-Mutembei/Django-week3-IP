@@ -33,6 +33,7 @@ class Projects(models.Model):
     image = models.ImageField(null=True, upload_to='projects')
     description = models.TextField(max_length=300)
     link = models.CharField(max_length=150)
+    likes = models.ManyToManyField(User,blank=True,related_name='likes')
     
 
 

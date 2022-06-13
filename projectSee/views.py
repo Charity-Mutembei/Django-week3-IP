@@ -20,6 +20,7 @@ from .models import Projects, Profile
 from .serializer import ProfileSerializer, ProjectsSerializer
 from projectSee import serializer
 from .permissions import IsAdminOrReadOnly
+from django.urls import reverse
 
 
 # Create your views here.
@@ -161,3 +162,10 @@ class PostListView(ListView):
     def get_query_set(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Projects.objects.filter(author = user).order_by('-date_posted')
+
+
+@login_required(login_url='/login/')
+def likeProject(request, pk):
+    project = get_object_or_404(Projects, id=request.POST.get('like_id'))
+    project.likes.add(request.user)
+    return HttpResponseRedirect(reverse('welcome', ))

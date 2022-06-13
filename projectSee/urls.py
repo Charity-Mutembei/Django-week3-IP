@@ -17,6 +17,7 @@ urlpatterns = [
     path('register',views.registerPage,name='register'),
     path('welcome', views.welcome, name='welcome'),
     # path('welcome', views.welcome, name='welcome'),
+    path('like/<str:pk>',views.likeProject,name='like_project'),
     path('profile/<str:username>', views.PostListView.as_view(),name='profile'),
     path('edit_profile', views.edit_profile, name='edit_profile'),
     path('new_post', views.new_post, name='new_post'),

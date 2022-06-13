@@ -82,7 +82,7 @@
                 <div class="row">
                     {% for project in projects%}
                     <div class="col">
-                        <div class="card" style="width: 18rem; height: 15cm; background-color: #CEB21C;">
+                        <div class="card" style="width: 18rem; height: 16cm; background-color: #CEB21C;">
                             <img src="{{project.image.url}}" class="card-img-top" style="height: 6cm;" alt="...">
                             <hr>
                             <div class="card-body">
@@ -94,7 +94,20 @@
                                 <a href="{{project.link}}" class="btn" style="background-color: black; color: white; border-radius: 1cm; margin-left: 1.5cm;">View project</a>
                             </div>
                             <div class="vote">
-                                <i class="fa-solid fa-thumbs-up" style="margin-left: 0.5cm; margin-top: 0.5cm;"> 1</i>
+                                <!-- <i class="fa-solid fa-thumbs-up" style="margin-left: 0.5cm; margin-top: 0.5cm;"> {{project.likes.all.count}} </i> -->
+                                <form action="{% url 'like_project' project.pk %}" method="POST">
+                                    {%csrf_token%}
+                                    <div class="row">
+                                        <div class="col">
+                                            <button type="submit" name="like_id" value="{{project.id}}" class="btn btn-secondary btn-sm" style="background-color: black; "><i class="fa-solid fa-thumbs-up"></i></button>
+                                            <strong><p style="margin-left: 5px;" >{{project.likes.all.count}} Likes</p></strong>
+                                        </div>
+                                        <div class="col">
+                                           
+                                        </div>
+                                    </div>                                   
+                                   
+                                </form>
                             </div>
                           </div>
                     </div>
