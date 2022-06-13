@@ -29,10 +29,11 @@ class Projects(models.Model):
     image = models.ImageField(null=True, upload_to='projects')
     description = models.TextField(max_length=300)
     link = models.CharField(max_length=150)
+    
 
 
     def __str__(self):
-        return str(self.user)
+        return str(self.title)
 
     def save_projects(self):
         self.save()

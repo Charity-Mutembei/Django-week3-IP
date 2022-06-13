@@ -82,18 +82,19 @@
                 <div class="row">
                     {% for project in projects%}
                     <div class="col">
-                        <div class="card" style="width: 18rem; background-color: #CEB21C;">
+                        <div class="card" style="width: 18rem; height: 15cm; background-color: #CEB21C;">
                             <img src="{{project.image.url}}" class="card-img-top" style="height: 6cm;" alt="...">
                             <hr>
                             <div class="card-body">
                               <h5 class="card-title"><strong>Title: {{project.title}}</strong></h5>
                               <hr>
-                              <p class="card-text"><strong>Project-description: <br> </strong>{{project.description}}</p>
-                              <a href="{{project.link}}" class="btn" style="background-color: black; color: white; border-radius: 1cm; margin-left: 1cm;">Go somewhere</a>
-                              
+                              <p class="card-text"><strong>Project-description: <br> </strong>{{project.description}}</p>                              
+                            </div>
+                            <div class="linksw">
+                                <a href="{{project.link}}" class="btn" style="background-color: black; color: white; border-radius: 1cm; margin-left: 1.5cm;">View project</a>
                             </div>
                             <div class="vote">
-                                <i class="fa-solid fa-thumbs-up" style="margin-left: 0.5cm;"> 1</i>
+                                <i class="fa-solid fa-thumbs-up" style="margin-left: 0.5cm; margin-top: 0.5cm;"> 1</i>
                             </div>
                           </div>
                     </div>

@@ -113,20 +113,16 @@ class ProjectsList(APIView):
 @login_required(login_url='/login/')
 def new_post(request):
     current_user = request.user
+    form = PostMakeForm()
+    
     if request.method == 'POST':
         form = PostMakeForm(request.POST, request.FILES)
-
         if form.is_valid():
-            post = form.save(commit=False)
+            post = form.save()
             post.editor = current_user
             post.save()
-           
-        return redirect ('welcome')
+        return redirect('welcome')
     else:
         form = PostMakeForm()
-
-        
-
-
     return render(request, 'new_post.html', {'form': form})
 

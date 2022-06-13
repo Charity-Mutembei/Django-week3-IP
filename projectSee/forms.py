@@ -18,7 +18,7 @@ class NewsLetterForm(UserCreationForm):
         fields = ['username', 'email']
 
 
-class PostMakeForm(UserCreationForm):
+class PostMakeForm(forms.ModelForm):
     class Meta:
         model = Projects
         fields = ['title', 'image', 'description', 'link']
