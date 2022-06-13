@@ -1,4 +1,6 @@
 
+# from msilib.schema import ListView
+from django.views.generic import ListView
 from django.urls import path
 from django.urls import include
 from . import views
@@ -14,7 +16,9 @@ urlpatterns = [
     path('login/',views.loginPage,name='login'),
     path('register',views.registerPage,name='register'),
     path('welcome', views.welcome, name='welcome'),
-    path('profile', views.profile, name='profile'),
+    # path('welcome', views.welcome, name='welcome'),
+    path('profile/<str:username>', views.PostListView.as_view(),name='profile'),
+    path('edit_profile', views.edit_profile, name='edit_profile'),
     path('new_post', views.new_post, name='new_post'),
     path('ajax/newsletter/', views.newsletter, name='newsletter'),
     path('api/profile/', views.ProfileList.as_view()),

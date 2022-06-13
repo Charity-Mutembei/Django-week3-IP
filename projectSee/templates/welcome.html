@@ -41,7 +41,7 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
               <form class="d-flex" id="search" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" style="border-radius: 2cm; background-color: #B61AA6; color: white; " aria-label="Search">
+                <input class="form-control me-2" type="search" placeholder="Search-bar" style="border-radius: 2cm; background-color: white; color: black; " aria-label="Search">
               </form>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -51,7 +51,7 @@
                 </ul>            
             </div>
             <div class="profile-picture-1">
-                <a href="{% url 'profile' %}"><img src="/static/a0607c1655b30da438f5c6.jpg" class='profile-picture' alt="" style="margin-right: 2.5cm;"></a>
+                <a href="{% url 'profile' user.id %}"><img src="/static/a0607c1655b30da438f5c6.jpg" class='profile-picture' alt="" style="margin-right: 2.5cm;"></a>
             </div>
             </div>
           </nav>

@@ -20,18 +20,20 @@
         
         <div class="row" >
             <div class="col" style="width: 25%;">
-                <a href="#"><img src="/static/a0607c1655b30da438f5c6.jpg" alt="" style="border-radius: 9cm; width:6cm; height: 6cm; padding: 0.5cm;" ></a>
+                <a href="#"><img src="{{user.profile.picture.url}}" alt="user" style="border-radius: 9cm; width:6cm; height: 6cm; padding: 0.5cm;" ></a>
             </div>
             <div class="col">
                 <div class="info">
-                    <strong><p>username</p></strong>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                        when an unknown printer took a galley of type and scrambled it to make a type
-                        specimen book.</p>
+                    <strong><p>{{user.username}}/{{user.profile.name}}</p></strong>
+                    <hr>
+                    <p>{{user.profile.Bio}}</p>
+                    <hr>
 
-                    <p>contact me @username.com/ username@gmail.com/ +2456789987</p>
+                    <p>{{user.profile.contacts}} / {{user.email}}</p>
                 </div>
+            </div>
+            <div class="col" style="margin-left: 20%;">
+                <a href="{% url 'edit_profile' %}"><button style="margin-top: 10%;">Edit Profile</button></a>
             </div>
         </div>
     </div>

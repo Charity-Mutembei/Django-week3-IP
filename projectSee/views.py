@@ -1,5 +1,7 @@
+# from msilib.schema import ListView
+from django.views.generic import ListView
 from multiprocessing import context
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
 from django.http import HttpResponse, Http404, HttpResponseRedirect
@@ -7,7 +9,7 @@ from .forms import registrationForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http import JsonResponse
-from .forms import NewsLetterForm, PostMakeForm
+from .forms import NewsLetterForm, PostMakeForm, ProfileEditForm
 from .models import NewsLetterRecipients
 from .email import send_welcome_email
 from django.core.mail import send_mail
@@ -131,3 +133,31 @@ def profile (request):
     projects = Projects.objects.all()
 
     return render (request,'profile.html', {'projects': projects})
+
+@login_required(login_url='/log/')
+def edit_profile(request,id):
+    current_user = request.user_id
+    form = ProfileEditForm()
+
+    if request.method == 'POST':
+        form = ProfileEditForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile = form.save()
+            profile.editor = current_user
+            profile.save()
+
+        return redirect('profile')
+
+    else:
+        form = ProfileEditForm()
+    return render(request, 'edit.html')
+
+class PostListView(ListView):
+    model = Projects
+    template_name = 'profile.html'
+    context_object_name = 'projects'
+
+
+    def get_query_set(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Projects.objects.filter(author = user).order_by('-date_posted')
