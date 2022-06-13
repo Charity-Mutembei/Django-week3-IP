@@ -1,11 +1,14 @@
 {%extends 'base.html'%}
-{% load static %}
 {% block content %}
-
+<style>
+    body{
+        background-color: linear-gradient(120deg, blueviolet,black);
+    }
+</style>
 
 <body>
 
-    <form  action="{%url 'new-post'%}" method="post" enctype="multipart/form-data">
+    <form  action="{%url 'new_post'%}" method="post" enctype="multipart/form-data">
       {%csrf_token%}
       <div class="form-design" style="margin-left: 30%; height: 3cm; width: 6cm; padding: 2px;">
         <div class="title" style="padding: 2px;">
@@ -28,17 +31,14 @@
           {{form.link}}
         </div>
           <input type="submit" class="btn btn-success btn-lg" value="Post" style="padding: 4px; width: 3cm; margin: 4px;">
-      </div>
-  
-  
-  
+      </div>  
   
   
     </form>
   
-     {% block scripts %}
+    {% block scripts %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    {% bootstrap_javascript %} {% endblock %}
+    {% endblock %}
   
   </body>
 

@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate,login,logout
@@ -119,9 +120,13 @@ def new_post(request):
             post = form.save(commit=False)
             post.editor = current_user
             post.save()
+           
         return redirect ('welcome')
-
-    else: 
+    else:
         form = PostMakeForm()
+
+        
+
+
     return render(request, 'new_post.html', {'form': form})
 
