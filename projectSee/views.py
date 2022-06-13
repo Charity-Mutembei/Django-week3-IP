@@ -126,3 +126,8 @@ def new_post(request):
         form = PostMakeForm()
     return render(request, 'new_post.html', {'form': form})
 
+@login_required(login_url='/login/')
+def profile (request):
+    projects = Projects.objects.all()
+
+    return render (request,'profile.html', {'projects': projects})
