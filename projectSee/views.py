@@ -69,11 +69,13 @@ def landing(request):
     return render(request, 'landing.html') 
 
 def welcome(request):
-    projects = Projects.objects.all()   
+    projects = Projects.objects.all() 
+    user = get_object_or_404(User)
+    profiles = Profile.objects.filter(user=user.id)
 
           
    
-    return render (request, 'welcome.html', {'projects': projects})
+    return render (request, 'welcome.html', {'projects': projects, 'profiles': profiles})
 
 class ProfiletListView(ListView):
     model = Profile

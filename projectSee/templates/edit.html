@@ -19,14 +19,21 @@
                {%csrf_token%}
                <div class="inputBx">
                    <label for="">Username:</label>
-                   <input type="text" name="username" placeholder="Enter Username" />
+                   {{form.name}}
                </div>
-           
                <div class="inputBx">
-                   <label for="">Password:</label>
-                   <input type="password" name="password" placeholder="Enter Password">
-               </div>
-           
+                <label for="">Picture:</label>
+                {{form.picture}}
+
+            </div>
+            <div class="inputBx">
+                <label for="">Your Bio:</label>
+               {{form.Bio}}
+            </div>
+            <div class="inputBx">
+                <label for="">Your contacts:</label>
+                {{form.contacts}}
+            </div>          
                <br>
               
                <hr>
