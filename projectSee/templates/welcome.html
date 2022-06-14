@@ -46,13 +46,21 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#" style="color: yellow; font-size: 0.5cm; font-weight: 700; margin-left: 5cm;" class="username">Username</a>
+                        {% if user is authenticated %}
+                        <a class="nav-link active" aria-current="page" href="#" style="color: yellow; font-size: 0.5cm; font-weight: 700; margin-left: 5cm;" class="username">Hello there {{user.username}}</a>
+                        {% else %}
+                        <a class="nav-link active" aria-current="page" href="{% url 'register' %}" style="color: yellow; font-size: 0.5cm; font-weight: 700; margin-left: 5cm;" class="username">Sign up today</a>
+                        {% endif %}
+
                     </li>
                 </ul>            
             </div>
+<!-- 
             <div class="profile-picture-1">
-                <a href="{% url 'profile' user.id %}"><img src="/static/a0607c1655b30da438f5c6.jpg" class='profile-picture' alt="" style="margin-right: 2.5cm;"></a>
-            </div>
+                {% for profile in profiles %}
+                <a href="{% url 'profile' user.id %}"><img src="{{profile.picture.url}}" class='profile-picture' alt="" style="margin-right: 2.5cm;"></a>
+                {% endfor %}
+            </div> -->
             </div>
           </nav>
     </div>

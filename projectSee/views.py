@@ -69,9 +69,21 @@ def landing(request):
     return render(request, 'landing.html') 
 
 def welcome(request):
-    projects = Projects.objects.all()            
+    projects = Projects.objects.all()   
+
+          
    
     return render (request, 'welcome.html', {'projects': projects})
+
+class ProfiletListView(ListView):
+    model = Profile
+    template_name = 'welcome.html'
+    context_object_name = 'profiles'
+
+
+    def get_query_set(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Profile.objects.filter(author = user)
 
 def newsletter(request):
     name = request.POST.get('your name')
