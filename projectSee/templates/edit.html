@@ -1,45 +1,46 @@
-{% extends 'base.html' %}
-{% load static %}
+{%extends 'base.html'%}
 {% block content %}
-
 <style>
     body{
-       background: linear-gradient(120deg, blueviolet,black);
-       margin: 0;
-       overflow: hidden;
-       height: 100vh;
-   }
-
+        background-color: linear-gradient(120deg, blueviolet,black);
+    }
 </style>
-<div class="log"  style="width: 15cm; margin-top: 10%; margin-left: 30%;">
-   <div class="shadow p-3 mb-5 bg-body rounded"  style=" color: black;">
-       <h1  style="margin-left: 26%; font-weight: 900;" >Update Profile</h1>
-       <hr>
-           <form action="" method="POST" style="width: 5cm; margin-left: 20%; color: blueviolet;">
-               {%csrf_token%}
-               <div class="inputBx">
-                   <label for="">Username:</label>
-                   {{form.name}}
-               </div>
-               <div class="inputBx">
-                <label for="">Picture:</label>
-                {{form.picture}}
 
-            </div>
-            <div class="inputBx">
-                <label for="">Your Bio:</label>
-               {{form.Bio}}
-            </div>
-            <div class="inputBx">
-                <label for="">Your contacts:</label>
-                {{form.contacts}}
-            </div>          
-               <br>
-              
-               <hr>
-               <input type="submit" class="btn btn-outline-secondary" style=" margin-left: 60%;" value="Login"/>
-           </form>
-   </div> 
-</div>
+<body>
 
-{% endblock%}
+    <form  action="{%url 'edit_profile'%}" method="post" enctype="multipart/form-data">
+      {%csrf_token%}
+      <div class="form-design" style="margin-left: 30%; height: 3cm; width: 6cm; padding: 2px;">
+        <div class="title" style="padding: 2px;">
+          <h1>New Post</h1>
+        </div>
+        <div class="post-body-2" style="padding: 2px;">
+            <label for="">Your Project's title</label>
+            {{form.name}}
+          </div>
+        <div class="post-body" style="padding: 2px;">
+          <label for="">Chose image in your computer</label>
+          {{form.picture}}
+        </div>
+        <div class="post-body-2" style="padding: 2px;">
+            <label for="">Your Project's title</label>
+            {{form.Bio}}
+          </div>
+        <div class="post-body-2" style="padding: 2px;">
+          <label for="">Your project's description</label>
+          {{form.contacts}}
+ 
+          <input type="submit" class="btn btn-success btn-lg" value="Post" style="padding: 4px; width: 3cm; margin: 4px;">
+      </div>  
+  
+  
+    </form>
+  
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {% endblock %}
+  
+  </body>
+
+
+{% endblock %}

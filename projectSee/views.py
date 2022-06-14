@@ -150,14 +150,14 @@ def profile (request):
     return render (request,'profile.html', {'projects': projects})
 
 @login_required(login_url='/log/')
-def edit_profile(request,id):
-    current_user = request.user_id
+def edit_profile(request):
+    current_user = get_object_or_404(User)
     form = ProfileEditForm()
 
     if request.method == 'POST':
         form = ProfileEditForm(request.POST, request.FILES)
         if form.is_valid():
-            profile = form.save()
+            profile = form.save(commit=False)
             profile.editor = current_user
             profile.save()
 
