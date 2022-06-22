@@ -9,6 +9,7 @@ from .forms import registrationForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.http import JsonResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import NewsLetterForm, PostMakeForm, ProfileEditForm
 from .models import NewsLetterRecipients
 from .email import send_welcome_email
@@ -144,15 +145,20 @@ def new_post(request):
     return render(request, 'new_post.html', {'form': form})
 
 @login_required(login_url='/login/')
-def profile (request):
-    projects = Projects.objects.all()
+class profileListView(ListView):
+    def profile (self, request):
+        profile = request.user.profile
+        user= self.request.user.profile
+        projects = Projects.objects.filter(author=user)
 
-    return render (request,'profile.html', {'projects': projects})
+
+        return render (request,'profile.html', {'projects': projects, 'profile': profile})
 
 @login_required(login_url='/log/')
 def edit_profile(request):
-    current_user = get_object_or_404(User)
+    current_user = request.user
     form = ProfileEditForm()
+    username = current_user.username
 
     if request.method == 'POST':
         form = ProfileEditForm(request.POST, request.FILES)
@@ -161,11 +167,11 @@ def edit_profile(request):
             profile.editor = current_user
             profile.save()
 
-        return redirect('profile')
+        return redirect('profile', username=username )
 
     else:
         form = ProfileEditForm()
-    return render(request, 'edit.html')
+    return render(request, 'edit.html', {'form':form})
 
 class PostListView(ListView):
     model = Projects
@@ -177,6 +183,15 @@ class PostListView(ListView):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Projects.objects.filter(author = user).order_by('-date_posted')
 
+class ProfileListView(ListView):
+    model = Profile
+    template_name = 'profile.html'
+    context_object_name = 'profile'
+
+
+    def get_query_set(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Profile.objects.filter(author = user).order_by('-date_posted')
 
 @login_required(login_url='/login/')
 def likeProject(request, pk):

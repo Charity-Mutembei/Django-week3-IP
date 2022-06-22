@@ -12,10 +12,10 @@
       {%csrf_token%}
       <div class="form-design" style="margin-left: 30%; height: 3cm; width: 6cm; padding: 2px;">
         <div class="title" style="padding: 2px;">
-          <h1>New Post</h1>
+          <h1>Edit profile</h1>
         </div>
         <div class="post-body-2" style="padding: 2px;">
-            <label for="">Your Project's title</label>
+            <label for="">Your Name</label>
             {{form.name}}
           </div>
         <div class="post-body" style="padding: 2px;">
@@ -23,11 +23,11 @@
           {{form.picture}}
         </div>
         <div class="post-body-2" style="padding: 2px;">
-            <label for="">Your Project's title</label>
+            <label for="">Your Bio</label>
             {{form.Bio}}
           </div>
         <div class="post-body-2" style="padding: 2px;">
-          <label for="">Your project's description</label>
+          <label for="">your contacts</label>
           {{form.contacts}}
  
           <input type="submit" class="btn btn-success btn-lg" value="Post" style="padding: 4px; width: 3cm; margin: 4px;">

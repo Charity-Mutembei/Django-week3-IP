@@ -19,6 +19,7 @@ urlpatterns = [
     # path('welcome', views.welcome, name='welcome'),
     path('like/<str:pk>',views.likeProject,name='like_project'),
     path('profile/<str:username>', views.PostListView.as_view(),name='profile'),
+    path('profile/<str:username>', views.ProfileListView.as_view(),name='profile1'),
     # path('profile/<str:username>', views.ProfiletListView.as_view(),name='user-profile'),
     path('edit_profile', views.edit_profile, name='edit_profile'),
     path('new_post', views.new_post, name='new_post'),

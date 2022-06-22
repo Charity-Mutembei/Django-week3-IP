@@ -19,19 +19,23 @@
     <div class="picture" style="background-color: rgba(217, 217, 217, 0.7);">
         
         <div class="row" >
+            {% if profile %}
+            {% for profile in profile %}
             <div class="col" style="width: 25%;">
-                <a href="#"><img src="{{user.profile.picture.url}}" alt="user" style="border-radius: 9cm; width:6cm; height: 6cm; padding: 0.5cm;" ></a>
+                <a href="#"><img src="{{profile.picture.url}}" alt="user" style="border-radius: 9cm; width:6cm; height: 6cm; padding: 0.5cm;" ></a>
             </div>
             <div class="col">
                 <div class="info">
-                    <strong><p style="font-size: 0.5cm;" >Username: <br>  @{{user.profile.name}}</p></strong>
+                    <strong><p style="font-size: 0.5cm;" >Username: <br>  @{{profile.name}}</p></strong>
                     <hr>
-                    <p style="font-size: 0.5cm;" > <strong>Bio:</strong> <br> {{user.profile.Bio}}</p>
+                    <p style="font-size: 0.5cm;" > <strong>Bio:</strong> <br> {{profile.Bio}}</p>
                     <hr>
 
-                    <p style="font-size: 0.5cm;" > <strong>Contact me at:</strong> <br> {{user.profile.contacts}}</p>
+                    <p style="font-size: 0.5cm;" > <strong>Contact me at:</strong> <br> {{profile.contacts}}</p>
                 </div>
             </div>
+            {% endfor %}
+            {% endif %}
             <div class="col" style="margin-left: 20%;">
                 <a href="{% url 'edit_profile' %}"><button style="margin-top: 10%;">Edit Profile</button></a>
             </div>
