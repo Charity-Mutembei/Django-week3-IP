@@ -26,44 +26,40 @@ from django.urls import reverse
 
 # Create your views here.
 def registerPage(request):
-    form = registrationForm()
     if request.method == 'POST':
-        form = registrationForm(request.POST, request.FILES)
+        form = registrationForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password1']
-            user = form.save()
-            login(request,user,backend = 'django.contrib.auth.backends.ModelBackend')
-        return redirect ('landing')
+            form.save()
+            username= form.cleaned_data['username']
+            password=form.cleaned_data['password1']
+            user=authenticate(username=username,password=password)
+            login(request,user)
 
-    return render(request, 'register.html', {'form':form})    
+            messages.success(request,('Registration successfull'))
+
+            return redirect('landing')
+
+    else:
+        form=registrationForm()
+    return render(request, 'register.html', {'form': form})   
 
 def loginPage(request):
-    page = 'login'
-    if request.user.is_authenticated:
-        return redirect('landing')
 
     if request.method == 'POST':
-        username = request.POST.get('username').lower()
-        password = request.POST.get('password')
-
-        try:
-            user = User.objects.get(username = username)
-        except:
-            messages.error(request, 'User does not exist')
-
+        username= request.POST['username']
+        password = request.POST['password']
         user = authenticate(request, username=username, password=password)
+
         if user is not None:
             login(request, user)
-            return redirect ('landing')
+            return redirect('welcome')
 
         else:
-            messages.error(request, 'Username or Password does not exist')
+            messages.success(request, ('There was an error! Please try again'))
+            return redirect('login')
 
-    context = {'page': page}
-    context = {}
-
-    return render(request, 'login.html', context)
+    else:
+        return render(request, 'login.html')
 
 @login_required(login_url='/login/')
 def landing(request):
