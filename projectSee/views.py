@@ -70,7 +70,7 @@ def landing(request):
 
 def welcome(request):
     projects = Projects.objects.all() 
-    user = get_object_or_404(User)
+    user = request.user
     profiles = Profile.objects.filter(user=user.id)
 
           

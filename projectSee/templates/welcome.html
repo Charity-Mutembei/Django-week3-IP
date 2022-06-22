@@ -46,11 +46,8 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        {% if user is authenticated %}
-                        <a class="nav-link active" aria-current="page" href="#" style="color: yellow; font-size: 0.5cm; font-weight: 700; margin-left: 5cm;" class="username">Hello there {{user.username}}</a>
-                        {% else %}
-                        <a class="nav-link active" aria-current="page" href="{% url 'register' %}" style="color: yellow; font-size: 0.5cm; font-weight: 700; margin-left: 5cm;" class="username">Sign up today</a>
-                        {% endif %}
+                        <a class="nav-link active" aria-current="page" href="#" style="color: yellow; font-size: 0.5cm; font-weight: 700; margin-left: 5cm;" class="username">Hello there {{request.user}}</a>
+                     
 
                     </li>
                 </ul>            
